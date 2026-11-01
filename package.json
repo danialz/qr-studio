@@ -1,0 +1,26 @@
+{
+  "name": "qr-studio",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "A fast, private QR code creator and scanner.",
+  "author": "DaNial Zameni",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "test": "node --test",
+    "check": "node --test && vite build"
+  },
+  "engines": {
+    "node": ">=20.19.0"
+  },
+  "dependencies": {
+    "jsqr": "1.4.0",
+    "qrcode": "1.5.4"
+  },
+  "devDependencies": {
+    "vite": "8.3.5"
+  }
+}

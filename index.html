@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0b0c13" />
+    <meta name="description" content="Create, customize and scan QR codes directly in your browser. Private by design. No signup, no uploads." />
+    <meta property="og:title" content="QR Studio — Create. Scan. Share." />
+    <meta property="og:description" content="A beautiful, privacy-first QR code workspace made with JavaScript." />
+    <link rel="icon" type="image/svg+xml" href="%BASE_URL%favicon.svg" />
+    <title>QR Studio — Create. Scan. Share.</title>
+    <link rel="stylesheet" href="./src/styles.css" />
+  </head>
+  <body>
+    <div class="page-glow" aria-hidden="true"></div>
+    <div class="app-container">
+      <header class="site-header">
+        <a class="brand" href="./" aria-label="QR Studio home">
+          <span class="brand-symbol" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+          <span>qr<span class="brand-suffix">studio</span><span class="brand-period">.</span></span>
+        </a>
+        <nav class="top-nav" aria-label="Main navigation">
+          <a class="nav-active" href="#studio">Studio</a>
+          <a href="#privacy">Privacy</a>
+          <a class="github-link" href="https://github.com/danialz/qr-studio" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .75a11.25 11.25 0 0 0-3.56 21.92c.56.1.77-.24.77-.54v-1.92c-3.13.68-3.79-1.33-3.79-1.33-.51-1.3-1.25-1.65-1.25-1.65-1.02-.7.08-.69.08-.69 1.13.08 1.73 1.16 1.73 1.16 1 .1.92 1.8 2.86 1.26.1-.73.39-1.23.71-1.51-2.5-.29-5.13-1.25-5.13-5.56 0-1.22.44-2.22 1.16-3-.11-.28-.5-1.42.11-2.96 0 0 .94-.3 3.1 1.14a10.77 10.77 0 0 1 5.65 0c2.16-1.44 3.1-1.14 3.1-1.14.61 1.54.22 2.68.11 2.96.72.78 1.16 1.78 1.16 3.01 0 4.32-2.63 5.27-5.14 5.56.4.35.76 1.03.76 2.08v3.08c0 .3.2.65.78.54A11.25 11.25 0 0 0 12 .75Z"/></svg>
+            <span>View on GitHub</span><span class="arrow-diagonal" aria-hidden="true">↗</span>
+          </a>
+        </nav>
+      </header>
+
+      <main id="studio">
+        <div class="hero">
+          <div class="eyebrow"><span class="live-dot"></span> YOUR EVERYDAY QR WORKSPACE <span class="eyebrow-line"></span> 100% BROWSER-BASED</div>
+          <h1>Make it <span class="headline-accent">scannable<span class="headline-dot">.</span></span></h1>
+          <p>One beautiful space to create, customize and scan QR codes. Everything happens right here, in your browser.</p>
+        </div>
+
+        <section class="workspace" id="workspace" data-mode="create" aria-label="QR Studio workspace">
+          <div id="editor-panel" class="editor-panel">
+            <div class="editor-head">
+              <div>
+                <span class="kicker">YOUR WORKSPACE</span>
+                <h2>What would you like to do?</h2>
+              </div>
+              <div class="version-tag">v0.1</div>
+            </div>
+            <div class="mode-switch" role="tablist" aria-label="QR tool">
+              <button id="mode-create" type="button" class="mode-button is-active" role="tab" aria-selected="true" aria-controls="create-panel">
+                <span aria-hidden="true">✳</span> Create QR
+              </button>
+              <button id="mode-scan" type="button" class="mode-button" role="tab" aria-selected="false" aria-controls="scan-panel">
+                <span aria-hidden="true">▦</span> Scan QR
+              </button>
+            </div>
+            <a id="mobile-preview-peek" class="mobile-preview-peek" href="#preview-panel" aria-label="Jump to live QR preview and download options">
+              <span class="mobile-peek-icon" aria-hidden="true">▦</span>
+              <span class="mobile-peek-copy"><strong>Live QR preview</strong><small>View your code &amp; download</small></span>
+              <span class="mobile-peek-arrow" aria-hidden="true">↗</span>
+            </a>
+
+            <div id="create-panel" role="tabpanel" aria-labelledby="mode-create">
+              <div class="section-heading"><span>01 <span class="slash">/</span> CONTENT TYPE</span><span class="muted-small">Choose what to share</span></div>
+              <div class="type-grid" role="group" aria-label="QR content type">
+                <button class="type-card is-selected" type="button" data-type="url" aria-pressed="true"><span class="type-icon">↗</span><span>Website</span></button>
+                <button class="type-card" type="button" data-type="text" aria-pressed="false"><span class="type-icon">≡</span><span>Text</span></button>
+                <button class="type-card" type="button" data-type="wifi" aria-pressed="false"><span class="type-icon">◉</span><span>Wi-Fi</span></button>
+                <button class="type-card" type="button" data-type="contact" aria-pressed="false"><span class="type-icon">▤</span><span>Contact</span></button>
+              </div>
+
+              <div class="form-area">
+                <div class="section-heading"><span>02 <span class="slash">/</span> YOUR CONTENT</span><span class="muted-small">Updates in real time</span></div>
+                <div data-content="url">
+                  <label class="field-label" for="website">Website URL</label>
+                  <div class="input-holder"><span class="prefix-icon" aria-hidden="true">↗</span><input id="website" type="text" inputmode="url" autocomplete="url" spellcheck="false" value="https://github.com/danialz/qr-studio" placeholder="https://your-website.com" /></div>
+                </div>
+                <div data-content="text" hidden>
+                  <label class="field-label" for="plain-text">Your text</label>
+                  <textarea id="plain-text" rows="4" maxlength="2000" placeholder="A message worth sharing...">Make something amazing.</textarea>
+                </div>
+                <div data-content="wifi" hidden>
+                  <label class="field-label" for="wifi-name">Network name (SSID)</label>
+                  <input id="wifi-name" maxlength="2000" placeholder="Your Wi-Fi name" />
+                  <div class="field-pair">
+                    <div><label class="field-label" for="wifi-security">Security</label><select id="wifi-security"><option value="WPA">WPA / WPA2 / WPA3</option><option value="WEP">WEP</option><option value="nopass">Open network</option></select></div>
+                    <div><label class="field-label" for="wifi-password">Password</label><input id="wifi-password" type="text" maxlength="2000" autocomplete="off" placeholder="Network password" /></div>
+                  </div>
+                  <label class="check-row"><input id="wifi-hidden" type="checkbox" /><span>Hidden network</span></label>
+                </div>
+                <div data-content="contact" hidden>
+                  <label class="field-label" for="contact-name">Full name</label>
+                  <input id="contact-name" maxlength="2000" autocomplete="name" placeholder="Jane Doe" />
+                  <div class="field-pair">
+                    <div><label class="field-label" for="contact-phone">Phone</label><input id="contact-phone" type="tel" autocomplete="tel" placeholder="+1 555 0100" /></div>
+                    <div><label class="field-label" for="contact-email">Email</label><input id="contact-email" type="email" autocomplete="email" placeholder="jane@example.com" /></div>
+                  </div>
+                </div>
+                <p id="create-error" class="inline-error" role="alert" hidden></p>
+              </div>
+
+              <div class="customize-area">
+                <div class="section-heading"><span>03 <span class="slash">/</span> MAKE IT YOURS</span><span class="muted-small">A little personality</span></div>
+                <div class="style-caption">Dot style</div>
+                <div class="shape-switch" role="group" aria-label="QR module style">
+                  <button class="shape-button is-selected" type="button" data-shape="rounded" aria-pressed="true"><span class="shape-art rounded-art" aria-hidden="true"><b></b><b></b><b></b><b></b></span> Rounded</button>
+                  <button class="shape-button" type="button" data-shape="square" aria-pressed="false"><span class="shape-art square-art" aria-hidden="true"><b></b><b></b><b></b><b></b></span> Square</button>
+                  <button class="shape-button" type="button" data-shape="dots" aria-pressed="false"><span class="shape-art dots-art" aria-hidden="true"><b></b><b></b><b></b><b></b></span> Dots</button>
+                </div>
+                <div class="style-controls">
+                  <label class="color-option" for="foreground"><span class="color-swatch"><input type="color" id="foreground" value="#18162c" /></span><span><strong>Foreground</strong><small id="foreground-label">#18162C</small></span></label>
+                  <label class="color-option" for="background"><span class="color-swatch"><input type="color" id="background" value="#ffffff" /></span><span><strong>Background</strong><small id="background-label">#FFFFFF</small></span></label>
+                  <label class="error-level-option" for="error-level"><span><strong>Recovery</strong><small>Error correction</small></span><select id="error-level"><option value="L">Low</option><option value="M" selected>Medium</option><option value="Q">High</option><option value="H">Maximum</option></select></label>
+                </div>
+              </div>
+            </div>
+
+            <div id="scan-panel" role="tabpanel" aria-labelledby="mode-scan" hidden>
+              <div class="section-heading"><span>01 <span class="slash">/</span> SCAN A CODE</span><span class="muted-small">No data uploaded</span></div>
+              <div class="camera-stage" id="camera-stage">
+                <video id="camera-video" autoplay muted playsinline aria-label="Camera preview" hidden></video>
+                <div id="camera-placeholder" class="camera-placeholder"><span class="scan-mark" aria-hidden="true">▦</span><strong>Point your camera at a QR code</strong><span>Or upload an image from your device</span></div>
+                <div class="scan-frame" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+              </div>
+              <div class="camera-actions"><button id="start-camera" type="button" class="primary-button"><span aria-hidden="true">◉</span> Start camera</button><button id="stop-camera" type="button" class="ghost-button" hidden>Stop camera</button></div>
+              <p class="scan-hint">Your browser will ask for camera permission. Video is processed locally and is never recorded or uploaded.</p>
+              <div class="section-heading scan-upload-head"><span>02 <span class="slash">/</span> OR UPLOAD</span><span class="muted-small">PNG, JPG, WebP</span></div>
+              <button id="dropzone" type="button" class="dropzone"><span class="upload-icon" aria-hidden="true">↑</span><span><strong>Choose an image</strong> or drag & drop here</span><small>You can also paste an image from your clipboard.</small></button>
+              <input id="scan-file" class="visually-hidden" type="file" accept="image/png,image/jpeg,image/webp,image/gif" tabindex="-1" />
+              <p id="scan-error" class="inline-error" role="alert" hidden></p>
+              <div id="scan-result" class="scan-result" hidden>
+                <div class="result-heading"><span class="result-check" aria-hidden="true">✓</span><span><strong>QR code decoded</strong><small id="scan-result-kind">Plain text</small></span></div>
+                <pre id="scan-result-value"></pre>
+                <div class="result-actions"><button id="copy-result" type="button" class="secondary-button">Copy content</button><button id="edit-result" type="button" class="secondary-button">Create from this ↗</button><a id="open-result" class="secondary-button" href="#" target="_blank" rel="noopener noreferrer" hidden>Open website ↗</a></div>
+              </div>
+            </div>
+          </div>
+
+          <aside id="preview-panel" class="preview-panel" aria-labelledby="preview-title">
+            <div class="preview-top"><div><span class="preview-kicker">THE RESULT</span><h2 id="preview-title">Your QR, beautifully done.</h2></div><span class="preview-live"><span></span> LIVE PREVIEW</span></div>
+            <div class="preview-canvas-wrap"><div class="preview-backdrop" aria-hidden="true"></div><div id="qr-preview" class="qr-paper" role="img" aria-label="Generated QR code preview"><span class="empty-preview">Your QR preview will appear here.</span></div><div class="preview-shadow" aria-hidden="true"></div></div>
+            <div class="preview-bottom"><div class="preview-meta"><span><span class="tiny-symbol">✦</span> Ready to share</span><span id="qr-version">Version —</span></div><p id="contrast-warning" class="contrast-warning" hidden>Low contrast may make this code hard to scan. Try darker foreground and lighter background colors.</p><div class="download-actions"><button id="download-png" type="button" class="download-main"><span>↓</span> Download PNG</button><button id="download-svg" type="button" class="download-secondary">SVG <span aria-hidden="true">↗</span></button></div><p class="preview-footnote">High-resolution. No watermark. No account needed.</p><a class="mobile-edit-link" href="#editor-panel">← Back to editor</a></div>
+          </aside>
+        </section>
+
+        <section class="trust-strip" id="privacy" aria-label="Privacy and product values"><div class="trust-item"><span class="trust-icon">◎</span><div><strong>Private by default</strong><small>Your data never leaves your device</small></div></div><div class="trust-item"><span class="trust-icon">⚡</span><div><strong>Instant results</strong><small>Local processing, no signup required</small></div></div><div class="trust-item"><span class="trust-icon">↗</span><div><strong>Open source</strong><small>Built in the open for everyone</small></div></div></section>
+      </main>
+      <footer class="site-footer"><span>© 2026 QR Studio · Made by <a href="https://danialz.com" target="_blank" rel="noopener noreferrer">DaNial Zameni</a></span><span>Independent. Private. Open source. <a href="https://github.com/danialz/qr-studio/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License ↗</a></span></footer>
+    </div>
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>
